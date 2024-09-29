@@ -1,6 +1,7 @@
 // <!--GAMFC-->version base on commit 43fad05dcdae3b723c53c226f8181fc5bd47223e, time is 2023-06-22 15:20:05 UTC<!--GAMFC-END-->.
 // @ts-ignore
 import { connect } from 'cloudflare:sockets';
+import { randomInt } from 'crypto';
 
 // How to generate your own UUID:
 // [Windows] Press "Win + R", input cmd and run:  Powershell -NoExit -Command "[guid]::NewGuid()"
@@ -99,11 +100,11 @@ export default {
 
 			proxyIP = env.PROXYIP || proxyIP;
 			proxyIPs = await ADD(proxyIP);
-			proxyIP = proxyIPs[Math.floor(Math.random() * proxyIPs.length)];
+			proxyIP = proxyIPs[randomInt(proxyIPs.length)];
 			//console.log(proxyIP);
 			socks5Address = env.SOCKS5 || socks5Address;
 			socks5s = await ADD(socks5Address);
-			socks5Address = socks5s[Math.floor(Math.random() * socks5s.length)];
+			socks5Address = socks5s[randomInt(socks5s.length)];
 			socks5Address = socks5Address.split('//')[1] || socks5Address;
 			
 			sub = env.SUB || sub;
